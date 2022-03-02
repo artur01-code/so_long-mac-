@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:06:28 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 12:15:18 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:22:43 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,8 @@ typedef struct s_map {
 	int		rows;
 	int		columns;
 	int		collactables;
+	int		exit;
+	int		player;
 }				t_map;
 
 typedef struct s_mlx {
@@ -57,6 +59,7 @@ void move_up(t_mlx *mlx, int x, int y);
 void check_file(t_mlx *mlx);
 void check_map(t_mlx *mlx, int nr1, int nr2, char *line);
 void exit_window(t_mlx *mlx, char *line);
+int check_objects(t_mlx *mlx);
 
 
 #endif

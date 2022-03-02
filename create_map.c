@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:06:05 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 12:15:24 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:20:52 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,13 @@ void fill_map(t_mlx *mlx, int x, int y, char *line)
 		}
 		if (line[x] == 'E')
 		{
+			mlx->map->exit += 1;
 			mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/tombstone.xpm", &mlx->img->width, &mlx->img->heigth);
 			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, x * 99, y * 99);
 		}
 		if (line[x] == 'P')
 		{
+			mlx->map->player += 1;
 			mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/player.xpm", &mlx->img->width, &mlx->img->heigth);
 			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, x * 99, y * 99);
 			mlx->player->x = x;
@@ -79,6 +81,8 @@ int create_map(t_mlx *mlx)
 		y++;
 	}
 	close(fd);
+	if(!check_objects(mlx))
+		return (0);
 	return (1);
 }
 

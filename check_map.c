@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:57:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 12:15:11 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:28:54 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,16 @@ void check_map(t_mlx *mlx, int nr1, int nr2, char *line)
 	}
 }
 
+
+int check_objects(t_mlx *mlx)
+{
+	if ((!mlx->map->player) >= 1 || (!mlx->map->exit) >= 1 || (!mlx->map->collactables) >= 1)
+	{
+		printf("Map error: you need at least 1xP, 1xE & 1xC");
+		exit(0);
+	}
+	return (1);
+}
 
 /*
 int check_rectangle(t_mlx *mlx, int d)

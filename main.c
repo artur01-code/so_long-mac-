@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:25:53 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 11:53:17 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:17:03 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,10 +32,7 @@ int main(int argc, char **argv)
 	t_mlx *mlx;
 	
 	if (argc != 2)
-	{
-		printf("TWO AGRUMENTS!!! 🤦\n");
 		exit(0);
-	}
 	else
 	{
 		mlx = (t_mlx *) malloc(sizeof(t_mlx));
