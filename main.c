@@ -6,14 +6,23 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:25:53 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/01 15:57:54 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 11:53:17 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
 
-
+void exit_window(t_mlx *mlx, char *line)
+{
+	free(mlx);
+	free(mlx->img);
+	free(mlx->map);
+	free(mlx->player);
+	 if(line)
+	free(line);
+	exit(0);
+}
 
 /*
 handles the all the functions and manages the variables

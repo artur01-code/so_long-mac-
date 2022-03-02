@@ -13,8 +13,11 @@ movement
 
 map checking
 	//check if map is .ber
-	if ractangle
+	//if ractangle
 	if sorrounded by 1
 	only 1 P, 1 C, 1 E
 
 filepath -> change to mlx->map->path;
+
+
+memory leaks when clicking ESC;

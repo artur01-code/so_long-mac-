@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:21:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/01 15:27:52 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 11:44:38 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,7 +57,6 @@ int key_hook(int keycode, t_mlx *mlx)
 	if (keycode == 2)
 		move(mlx, x + 1, y);
 	else if (keycode == 53)
-		write(1, "ESC", 3);
-		//exit_window(t_mlx mlx);
+		exit_window(mlx, NULL);
 	return (0);
 }

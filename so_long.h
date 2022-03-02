@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:06:28 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/01 16:06:08 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:15:18 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,7 +55,8 @@ void fill_map(t_mlx *mlx, int i, int j, char *line);
 int key_hook(int keycode, t_mlx *mlx);
 void move_up(t_mlx *mlx, int x, int y);
 void check_file(t_mlx *mlx);
-int check_rectangle(t_mlx *mlx, int d);
+void check_map(t_mlx *mlx, int nr1, int nr2, char *line);
+void exit_window(t_mlx *mlx, char *line);
 
 
 #endif

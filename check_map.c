@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:57:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/01 16:09:48 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:15:11 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,9 +33,19 @@ void check_file(t_mlx *mlx)
 	if (e == 1)
 	{
 		printf("Filename not valid\n"); //include printf
-		exit(0);
+		exit_window(mlx, NULL);
 	}
 }
+
+void check_map(t_mlx *mlx, int nr1, int nr2, char *line)
+{
+	if (nr1 != nr2 && nr1 != 1)
+	{
+		printf("%d & %d", nr1, nr2);
+		exit_window(mlx, line); //memory leaks
+	}
+}
+
 
 /*
 int check_rectangle(t_mlx *mlx, int d)

@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:06:05 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/01 16:09:41 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:15:24 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,9 @@ void fill_map(t_mlx *mlx, int x, int y, char *line)
 			mlx->player->y = y;
 		}
 		if (line[x] == '\n' || !line[x])
-			mlx->map->map[y] = strdup(line); //libft | not sure if it works (?)
+		{
+			mlx->map->map[y] = strdup(line); //insert libft
+		}
 		x++;
 	}
 }
@@ -65,7 +67,6 @@ int create_map(t_mlx *mlx)
 
 	x = 0;
 	y = 0;
-	mlx->img->img = mlx_new_image(mlx->mlx, 1300, 500);
 	if (malloc_map(mlx->map) == 0)
 		return (0);
 	fd = open("maps/map1.ber", O_RDONLY);
@@ -115,11 +116,13 @@ int file_handler(t_mlx *mlx)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
+		
 		while (line[mlx->map->columns] != '\n' && line[mlx->map->columns] != '\0')
 			mlx->map->columns += 1;
 		free(line);
 		mlx->map->rows += 1;
 		line = get_next_line(fd);
+		check_map(mlx, d, mlx->map->columns, line);//CHECK_MAP & libft
 		d = mlx->map->columns;
 		if (line != NULL)
 			mlx->map->columns = 0;
