@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:06:28 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 12:22:43 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 12:50:47 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,6 +60,7 @@ void check_file(t_mlx *mlx);
 void check_map(t_mlx *mlx, int nr1, int nr2, char *line);
 void exit_window(t_mlx *mlx, char *line);
 int check_objects(t_mlx *mlx);
+int check_sorrounded_by_one(t_mlx *mlx);
 
 
 #endif

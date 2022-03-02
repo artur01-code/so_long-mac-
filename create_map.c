@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:06:05 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 12:20:52 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 13:04:12 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,7 @@ int create_map(t_mlx *mlx)
 		y++;
 	}
 	close(fd);
-	if(!check_objects(mlx))
+	if(check_objects(mlx) == 0)
 		return (0);
 	return (1);
 }
@@ -120,7 +120,6 @@ int file_handler(t_mlx *mlx)
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		
 		while (line[mlx->map->columns] != '\n' && line[mlx->map->columns] != '\0')
 			mlx->map->columns += 1;
 		free(line);
@@ -134,6 +133,8 @@ int file_handler(t_mlx *mlx)
 	close(fd);
 	free(line);
 	if (create_map(mlx) == 0)
+		return (0);
+	if(check_sorrounded_by_one(mlx) == 0)
 		return (0);
 	return (1);
 }

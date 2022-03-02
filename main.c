@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:25:53 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 12:17:03 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/02 13:03:07 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,6 +41,9 @@ int main(int argc, char **argv)
 		mlx->player = (t_player *) malloc(sizeof(t_player));
 
 		mlx->map->path = argv[1];
+		mlx->map->player = 0;
+		mlx->map->exit = 0;
+		mlx->map->collactables = 0;
 		check_file(mlx);
 		mlx->mlx = mlx_init();
 		mlx->mlx_win = mlx_new_window(mlx->mlx, 1300, 500, "so_long"); //size the window depending on the map
