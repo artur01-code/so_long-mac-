@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:21:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 11:44:38 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 07:54:43 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,6 @@ playces a ground on the current position of the player and places the player on 
 */
 void move(t_mlx *mlx, int x, int y)
 {
-	write(1, &mlx->map->map[y][x], 1);
 	if (mlx->map->map[y][x] != '1')
 	{
 		if (mlx->map->map[y][x] == 'C')
@@ -29,6 +28,8 @@ void move(t_mlx *mlx, int x, int y)
 			else
 				return ;
 		}
+		mlx->player->counter += 1;
+		printf("moves: %zu\n", mlx->player->counter);
 		mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/ground.xpm", &mlx->img->width, &mlx->img->heigth);
 		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, mlx->player->x * 99, mlx->player->y * 99);
 		mlx->player->x = x;

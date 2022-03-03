@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:06:05 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 13:04:12 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 08:04:23 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,7 +71,7 @@ int create_map(t_mlx *mlx)
 	y = 0;
 	if (malloc_map(mlx->map) == 0)
 		return (0);
-	fd = open("maps/map1.ber", O_RDONLY);
+	fd = open(mlx->map->path, O_RDONLY);
 	while (y < mlx->map->rows)
 	{
 		line = get_next_line(fd);
@@ -116,7 +116,12 @@ int file_handler(t_mlx *mlx)
 	
 	mlx->map->rows = 0;
 	mlx->map->columns = 0;
-	fd = open("./maps/map1.ber", O_RDONLY);
+	fd = open(mlx->map->path, O_RDONLY);
+	if (fd < 0)
+	{
+		printf("Map error: not found.\n");
+		exit_window(mlx, NULL);
+	}
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
@@ -125,7 +130,7 @@ int file_handler(t_mlx *mlx)
 		free(line);
 		mlx->map->rows += 1;
 		line = get_next_line(fd);
-		check_map(mlx, d, mlx->map->columns, line);//CHECK_MAP & libft
+		check_map(mlx, d, mlx->map->columns, line);
 		d = mlx->map->columns;
 		if (line != NULL)
 			mlx->map->columns = 0;

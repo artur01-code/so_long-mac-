@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:57:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/02 13:24:22 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 07:50:39 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -83,6 +83,5 @@ int check_sorrounded_by_one(t_mlx *mlx)
 		}
 		y++;
 	}
-	
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 08:30:30 by jtomala           #+#    #+#             */
-/*   Updated: 2021/12/21 09:03:50 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 07:48:54 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,15 +99,3 @@ char	*get_next_line(int fd)
 	tmp = ft_trim_tmp(tmp);
 	return (line);
 }
-
-// int	main(void)
-// {
-// 	int	fd = open("file", O_RDONLY);
-// 	char *line;
-
-// 	line = get_next_line(fd);
-// 	printf("%s\n", line);
-// 	line = get_next_line(fd);
-// 	printf("%s\n", line);
-// 	return (0);
-// }
