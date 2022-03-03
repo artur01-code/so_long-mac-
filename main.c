@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:25:53 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 12:04:57 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 12:41:07 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ int	main(int argc, char **argv)
 		set_standard_values(mlx, argv);
 		check_file(mlx);
 		mlx->mlx = mlx_init();
-		mlx->mlx_win = mlx_new_window(mlx->mlx, 1300, 500, "Rice rally");
+		mlx->mlx_win = mlx_new_window(mlx->mlx, 1900, 600, "Rice rally");
 		mlx_hook(mlx->mlx_win, 17, 0, ft_exit_game_cross, &mlx->mlx);
 		mlx_key_hook(mlx->mlx_win, key_hook, &mlx->mlx);
 		file_handler(mlx);
