@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:06:28 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 11:24:45 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 11:55:29 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,5 +66,8 @@ void	count_columns(t_mlx *mlx, char *line);
 void	set_x_y(t_mlx *mlx, int x, int y);
 char	*ft_strdup(const char *s1);
 void	*ft_memcpy(void *dst, const void *src, size_t n);
+void	manage_moves(t_mlx *mlx);
+int		ft_exit_game_cross(t_mlx *mlx);
+void	free_map(t_map *map);
 
 #endif

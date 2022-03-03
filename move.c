@@ -6,11 +6,26 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 14:21:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 11:27:21 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 12:04:00 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
+
+/*counts and displays the moves*/
+void	manage_moves(t_mlx *mlx)
+{
+	char	*str;
+
+	str = ft_itoa(mlx->player->counter);
+	ft_printf("moves: %d\n", mlx->player->counter);
+	mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/wall.xpm",
+			&mlx->img->width, &mlx->img->heigth);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img,
+		0, 0);
+	mlx_string_put(mlx->mlx, mlx->mlx_win, 15, 25,
+		0xff00, str);
+}
 
 /*
 playces a ground on the current position of the player and places 
@@ -30,7 +45,7 @@ void	move(t_mlx *mlx, int x, int y)
 				return ;
 		}
 		mlx->player->counter += 1;
-		ft_printf("moves: %d\n", mlx->player->counter);
+		manage_moves(mlx);
 		mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/ground.xpm",
 				&mlx->img->width, &mlx->img->heigth);
 		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img,
@@ -42,6 +57,15 @@ void	move(t_mlx *mlx, int x, int y)
 		mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img,
 			x * 99, y * 99);
 	}
+}
+
+int	ft_exit_game_cross(t_mlx *mlx)
+{
+	free(mlx);
+	free(mlx->img);
+	free(mlx->player);
+	exit(0);
+	return (0);
 }
 
 /*

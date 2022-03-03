@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/15 09:09:55 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 11:26:34 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 12:04:17 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 
 char	*get_next_line(int fd);
 size_t	ft_strlen_or(const char *s);
-size_t		ft_strlen(const char *s);
+size_t	ft_strlen(const char *s);
 void	*ft_calloc(size_t nmemb, size_t size);
 char	*ft_strchr(const char *s, int c);
 char	*ft_strjoin(char const *s1, char const *s2);
