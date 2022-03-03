@@ -6,53 +6,54 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:06:05 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 08:04:23 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 11:19:50 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "so_long.h"
 
+void	place_picture(t_mlx *mlx, int x, int y, char *path)
+{
+	mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, path,
+			&mlx->img->width, &mlx->img->heigth);
+	mlx_put_image_to_window(mlx->mlx, mlx->mlx_win,
+		mlx->img->img, x * 99, y * 99);
+}
+
+void	set_x_y(t_mlx *mlx, int x, int y)
+{
+	mlx->player->x = x;
+	mlx->player->y = y;
+}
+
 /*
 creates the actual map by putting the image to the window
 */
-void fill_map(t_mlx *mlx, int x, int y, char *line)
+void	fill_map(t_mlx *mlx, int x, int y, char *line)
 {
 	while (x <= mlx->map->columns && line != NULL)
 	{
 		if (line[x] == '0')
-		{
-			mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/ground.xpm", &mlx->img->width, &mlx->img->heigth);
-			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, x * 99, y * 99);
-		}
+			place_picture(mlx, x, y, "./img/ground.xpm");
 		if (line[x] == '1')
-		{
-			mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/wall.xpm", &mlx->img->width, &mlx->img->heigth);
-			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, x * 99, y * 99);
-		}
+			place_picture(mlx, x, y, "./img/wall.xpm");
 		if (line[x] == 'C')
 		{
 			mlx->map->collactables += 1;
-			mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/rice.xpm", &mlx->img->width, &mlx->img->heigth);
-			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, x * 99, y * 99);
+			place_picture(mlx, x, y, "./img/rice.xpm");
 		}
 		if (line[x] == 'E')
 		{
 			mlx->map->exit += 1;
-			mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/tombstone.xpm", &mlx->img->width, &mlx->img->heigth);
-			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, x * 99, y * 99);
+			place_picture(mlx, x, y, "./img/tombstone.xpm");
 		}
 		if (line[x] == 'P')
 		{
-			mlx->map->player += 1;
-			mlx->img->img = mlx_xpm_file_to_image(mlx->mlx, "./img/player.xpm", &mlx->img->width, &mlx->img->heigth);
-			mlx_put_image_to_window(mlx->mlx, mlx->mlx_win, mlx->img->img, x * 99, y * 99);
-			mlx->player->x = x;
-			mlx->player->y = y;
+			place_picture(mlx, x, y, "./img/player.xpm");
+			set_x_y(mlx, x, y);
 		}
 		if (line[x] == '\n' || !line[x])
-		{
-			mlx->map->map[y] = strdup(line); //insert libft
-		}
+			mlx->map->map[y] = ft_strdup(line);
 		x++;
 	}
 }
@@ -60,7 +61,7 @@ void fill_map(t_mlx *mlx, int x, int y, char *line)
 /*
 fills the **map with the variables with the fill_map-function
 */
-int create_map(t_mlx *mlx)
+int	create_map(t_mlx *mlx)
 {
 	int		x;
 	int		y;
@@ -81,52 +82,27 @@ int create_map(t_mlx *mlx)
 		y++;
 	}
 	close(fd);
-	if(check_objects(mlx) == 0)
+	if (check_objects(mlx) == 0)
 		return (0);
-	return (1);
-}
-
-/*
-mallocs the map based on the rows x columns
-*/
-int malloc_map(t_map *map)
-{
-	int i;
-
-	i = 0;
-	if (map->columns == 0)
-	return (0);
-	map->map = malloc(map->rows * sizeof(char *));
-	while (i < map->rows)
-	{
-		map->map[i] = malloc(map->columns * sizeof(char *));
-		i++;
-	}
 	return (1);
 }
 
 /*
 handles all the stuff that has to do with the file like reading and checking
 */
-int file_handler(t_mlx *mlx)
+int	file_handler(t_mlx *mlx)
 {
-	int fd;
-	char *line;
-	int d;
-	
-	mlx->map->rows = 0;
-	mlx->map->columns = 0;
+	int		fd;
+	char	*line;
+	int		d;
+
 	fd = open(mlx->map->path, O_RDONLY);
 	if (fd < 0)
-	{
-		printf("Map error: not found.\n");
 		exit_window(mlx, NULL);
-	}
 	line = get_next_line(fd);
 	while (line != NULL)
 	{
-		while (line[mlx->map->columns] != '\n' && line[mlx->map->columns] != '\0')
-			mlx->map->columns += 1;
+		count_columns(mlx, line);
 		free(line);
 		mlx->map->rows += 1;
 		line = get_next_line(fd);
@@ -135,11 +111,10 @@ int file_handler(t_mlx *mlx)
 		if (line != NULL)
 			mlx->map->columns = 0;
 	}
-	close(fd);
 	free(line);
 	if (create_map(mlx) == 0)
 		return (0);
-	if(check_sorrounded_by_one(mlx) == 0)
+	if (check_sorrounded_by_one(mlx) == 0)
 		return (0);
 	return (1);
 }

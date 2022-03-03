@@ -1,29 +1,27 @@
-NAME = so_long
+SRC = main.c get_next_line.c get_next_line_utils.c create_map.c move.c check_map.c map_helper.c
 
-CC = gcc
-FLAGS = -Wall -Werror -Wextra -g
-RM = rm -f
+OBJS		=	$(SRC:.c=.o)
 
-SRC = main.c get_next_line.c get_next_line_utils.c create_map.c move.c check_map.c
+CFLAGS		=	-Wall -Werror -Wextra
 
-OBJ = $(SRC:.c=.o)
+%.o: %.c 
+		gcc $(CFLAGS) -Imlx -c $< -o $@
 
-all: $(NAME)
+so_long:	$(OBJS)
+			cd mlx && make
+			cd ft_printf && make
+			gcc $(OBJS) ft_printf/libftprintf.a libmlx.dylib -o $@
 
-$(NAME): $(OBJ)
-	make -C mlx/
-	$(CC) $(OBJ) -Lmlx -lmlx -framework OpenGL -framework AppKit -o $(NAME)
-
-%.o: %.c
-	$(CC) $(FLAGS) -Imlx -c $< -o $@
+all:		so_long
 
 clean:
-	$(RM) *.o
-	make clean -C mlx/
+		cd mlx && make clean
+		cd ft_printf && make clean
+		rm -rf $(OBJS)
 
 fclean: clean
-	$(RM) $(NAME)
+		rm -rf so_long
+		rm -rf ft_printf/libftprintf.a
+		rm -rf libmlx.a
 
 re: fclean all
-
-.PHONY: all clean fclean re

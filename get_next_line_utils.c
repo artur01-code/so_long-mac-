@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2021/12/17 11:36:41 by jtomala           #+#    #+#             */
-/*   Updated: 2021/12/20 10:46:10 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/03 11:26:27 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ size_t	ft_strlen_or(const char *s)
 	return (size);
 }
 
-int	ft_strlen(const char *s)
+size_t	ft_strlen(const char *s)
 {
 	int	size;
 

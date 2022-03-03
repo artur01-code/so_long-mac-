@@ -22,7 +22,10 @@ map checking
 
 //counter;
 
-libft: strdup, 
-printf
+//libft: strdup, 
+//printf
 
 memory leaks when clicking ESC;
+	could be a problem of mlx!
+
+//norminette OK
