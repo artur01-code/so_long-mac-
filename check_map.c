@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:57:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/07 09:05:54 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/07 10:35:49 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,14 +41,15 @@ void	check_map(t_mlx *mlx, int nr1, int nr2, char *line)
 {
 	if (nr1 != nr2 && nr1 != 1)
 	{
-		ft_printf("Map error: it's not ractangle.");
+		ft_printf("Map error:\n it's not ractangle.");
 		exit_window(mlx, line);
 	}
 }
 
 int	check_objects(t_mlx *mlx)
 {
-	if ((!mlx->map->exit) >= 1 || (!mlx->map->collactables) >= 1)
+	if ((!mlx->map->exit) >= 1 || (!mlx->map->collactables) >= 1
+		|| (!mlx->map->player) >= 1)
 	{
 		ft_printf("Map error: you need at least 1xP, 1xE & 1xC.");
 		exit(0);
@@ -59,9 +60,8 @@ int	check_objects(t_mlx *mlx)
 void	not_surrounded(t_mlx *mlx)
 {
 	ft_printf("Map error:\nis not sourrend by one");
-	exit_window(mlx, NULL);	
+	exit_window(mlx, NULL);
 }
-
 
 int	check_sorrounded_by_one(t_mlx *mlx)
 {

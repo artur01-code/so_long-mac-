@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 13:25:53 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 14:19:51 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/07 10:35:10 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 void	set_standard_values(t_mlx *mlx, char **argv)
 {
-	mlx->map->rows = 0;
 	mlx->map->columns = 0;
+	mlx->map->rows = 0;
 	mlx->map->path = argv[1];
 	mlx->map->player = 0;
 	mlx->map->exit = 0;
@@ -83,8 +83,11 @@ int	main(int argc, char **argv)
 		mlx->player = (t_player *) malloc(sizeof(t_player));
 		set_standard_values(mlx, argv);
 		check_file(mlx);
+		count_columns_and_rows(mlx);
 		mlx->mlx = mlx_init();
-		mlx->mlx_win = mlx_new_window(mlx->mlx, 1900, 600, "Rice rally");
+		mlx->mlx_win = mlx_new_window(mlx->mlx, mlx->map->columns * 99,  mlx->map->rows * 99, "Rice rally");
+		mlx->map->columns = 0;
+		mlx->map->rows = 0;
 		mlx_hook(mlx->mlx_win, 17, 0, ft_exit_game_cross, &mlx->mlx);
 		mlx_key_hook(mlx->mlx_win, key_hook, &mlx->mlx);
 		file_handler(mlx);

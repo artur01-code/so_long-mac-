@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/22 15:06:28 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/07 09:04:44 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/07 10:24:33 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,5 +70,6 @@ void	manage_moves(t_mlx *mlx);
 int		ft_exit_game_cross(t_mlx *mlx);
 void	free_map(t_map *map);
 void	not_surrounded(t_mlx *mlx);
+void	count_columns_and_rows(t_mlx *mlx);
 
 #endif

@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/28 12:06:05 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 11:19:50 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/07 10:23:28 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,20 +35,21 @@ void	fill_map(t_mlx *mlx, int x, int y, char *line)
 	{
 		if (line[x] == '0')
 			place_picture(mlx, x, y, "./img/ground.xpm");
-		if (line[x] == '1')
+		else if (line[x] == '1')
 			place_picture(mlx, x, y, "./img/wall.xpm");
-		if (line[x] == 'C')
+		else if (line[x] == 'C')
 		{
 			mlx->map->collactables += 1;
 			place_picture(mlx, x, y, "./img/rice.xpm");
 		}
-		if (line[x] == 'E')
+		else if (line[x] == 'E')
 		{
 			mlx->map->exit += 1;
 			place_picture(mlx, x, y, "./img/tombstone.xpm");
 		}
-		if (line[x] == 'P')
+		else if (line[x] == 'P')
 		{
+			mlx->map->player += 1;
 			place_picture(mlx, x, y, "./img/player.xpm");
 			set_x_y(mlx, x, y);
 		}
