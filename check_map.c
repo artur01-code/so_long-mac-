@@ -6,7 +6,7 @@
 /*   By: jtomala <jtomala@student.42wolfsburg.de>   +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/03/01 15:57:20 by jtomala           #+#    #+#             */
-/*   Updated: 2022/03/03 11:25:26 by jtomala          ###   ########.fr       */
+/*   Updated: 2022/03/07 09:05:54 by jtomala          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	check_file(t_mlx *mlx)
 		e = 1;
 	if (e == 1)
 	{
-		ft_printf("Filename not valid\n");
+		ft_printf("File error:\n Filename not valid\n");
 		exit_window(mlx, NULL);
 	}
 }
@@ -56,6 +56,13 @@ int	check_objects(t_mlx *mlx)
 	return (1);
 }
 
+void	not_surrounded(t_mlx *mlx)
+{
+	ft_printf("Map error:\nis not sourrend by one");
+	exit_window(mlx, NULL);	
+}
+
+
 int	check_sorrounded_by_one(t_mlx *mlx)
 {
 	int	x;
@@ -70,10 +77,10 @@ int	check_sorrounded_by_one(t_mlx *mlx)
 		{
 			if (mlx->map->map[0][x] != '1'
 				|| mlx->map->map[mlx->map->rows - 1][x] != '1')
-				exit(0);
+				not_surrounded(mlx);
 			if (mlx->map->map[y][0] != '1'
 				|| mlx->map->map[y][mlx->map->columns - 1] != '1')
-				exit(0);
+				not_surrounded(mlx);
 			x++;
 		}
 		y++;
